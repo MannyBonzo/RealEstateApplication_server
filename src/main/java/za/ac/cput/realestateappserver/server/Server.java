@@ -41,7 +41,7 @@ public class Server {
         try {
           System.out.println("Server is listening");
           client = listener.accept();  
-          System.out.println("Now moving onto processClient");
+          System.out.println("Client Connected...Processing");
           
           processClient();
         }
