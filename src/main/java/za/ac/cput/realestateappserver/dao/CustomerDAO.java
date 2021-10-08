@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import za.ac.cput.realestateappserver.connection.DBconnection;
 
-import za.ac.cput.realestateappserver.domain.customer;
+import za.ac.cput.realestateapp.domain.customer;
 
 /**
  *
@@ -28,9 +28,9 @@ public class CustomerDAO {
     }
     
     public boolean addCustomer(customer customer) {
-        int res = 0;
+        boolean added = false;
             try{
-                String insertSQL = "INSERT INTO customer (customerid, name, surname, phone_number, email) "
+                String insertSQL = "INSERT INTO customer (customer_id, name, surname, phone_number, email) "
                 + "VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement ps = this.con.prepareStatement(insertSQL);
                 ps.setInt(1,customer.getCustID());
@@ -56,9 +56,9 @@ public class CustomerDAO {
                     
                 }
             }
-            return res==1;
+        return added = true;
     }
-    
+    /*
     public static void main(String[] args) {  
         try {
             CustomerDAO dao = new CustomerDAO();
@@ -67,4 +67,5 @@ public class CustomerDAO {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    */
 }

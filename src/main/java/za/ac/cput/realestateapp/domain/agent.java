@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package za.ac.cput.realestateappserver.domain;
+package za.ac.cput.realestateapp.domain;
 
 /**
  *

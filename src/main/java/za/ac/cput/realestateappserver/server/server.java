@@ -12,9 +12,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
 
-import za.ac.cput.realestateappserver.domain.customer;
-import za.ac.cput.realestateappserver.domain.agent;
-import za.ac.cput.realestateappserver.domain.house;
+import za.ac.cput.realestateapp.domain.customer;
+import za.ac.cput.realestateapp.domain.agent;
+import za.ac.cput.realestateapp.domain.house;
 
 import za.ac.cput.realestateappserver.dao.CustomerDAO;
 import za.ac.cput.realestateappserver.dao.AgentDAO;
@@ -107,7 +107,7 @@ public class server {
             //client.close();        
         }
         catch (IOException | SQLException | ClassNotFoundException e) {
-            System.out.println("Server>> Exception thrown ---> " + e.getMessage());
+            e.printStackTrace();
         }
     }
   

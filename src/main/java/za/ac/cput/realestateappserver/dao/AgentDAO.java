@@ -8,7 +8,7 @@ package za.ac.cput.realestateappserver.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import za.ac.cput.realestateappserver.connection.DBconnection;
-import za.ac.cput.realestateappserver.domain.agent;
+import za.ac.cput.realestateapp.domain.agent;
 
 /**
  *

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package za.ac.cput.realestateappserver.domain;
+package za.ac.cput.realestateapp.domain;
 
 import java.io.Serializable;
 
@@ -15,6 +15,9 @@ import java.io.Serializable;
 public class customer implements Serializable{
     private int mobileNumber,custID;
     private String Name, Surname, emailAddress;
+    
+    public customer() {
+    }
     
     public customer(int custID, String Name, String Surname, int mobileNumber, String emailAddress) {
         this.custID = custID;
