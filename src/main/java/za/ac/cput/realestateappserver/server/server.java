@@ -1,0 +1,120 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package za.ac.cput.realestateappserver.server;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.sql.SQLException;
+
+import za.ac.cput.realestateappserver.domain.customer;
+import za.ac.cput.realestateappserver.domain.agent;
+import za.ac.cput.realestateappserver.domain.house;
+
+import za.ac.cput.realestateappserver.dao.CustomerDAO;
+import za.ac.cput.realestateappserver.dao.AgentDAO;
+import za.ac.cput.realestateappserver.dao.HouseDAO;
+
+/**
+ *
+ * @author smann
+ */
+public class server {
+    // Server socket
+    private ServerSocket listener;
+    
+    // Client connection
+    private Socket client;
+    
+    private ObjectInputStream in;
+    private ObjectOutputStream out;
+    
+    CustomerDAO customerDao;
+    AgentDAO agentDao;
+    HouseDAO houseDao;
+    
+    String request = "";
+    
+    /** Creates a new instance of server */
+    public server() throws SQLException {
+        startServer();
+        listen();
+        createStreams();
+        processClient();
+    }
+    
+    public void startServer() {
+        // Create server socket
+        try {
+            listener = new ServerSocket(4000, 10);
+        }
+        catch (IOException ioe) {
+          System.out.println("IO Exception: " + ioe.getMessage());
+        }
+    }
+    
+    public void listen() {
+        // Start listening for client connections
+        try {
+          System.out.println("Server is listening");
+          client = listener.accept();
+          System.out.println("Connection Accepted");
+          System.out.println("Now moving onto process Client");
+          
+        }
+        catch(IOException ioe) {
+            System.out.println("IO Exception: " + ioe.getMessage());
+        }
+    }
+    
+    public void createStreams(){
+        try{
+            out = new ObjectOutputStream(client.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(client.getInputStream());
+        }
+        catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+    }
+    
+    public void processClient()
+    {
+        try {
+            do {
+                request = (String)in.readObject();
+                if(request.equalsIgnoreCase("addCustomer")){
+                    System.out.println("Client requesting addCustomer method");
+                    customer customer = (customer)in.readObject();
+                        //System.out.println(customer);
+                    customerDao = new CustomerDAO();
+                    boolean result = customerDao.addCustomer(customer);
+                        System.out.println("Result of DAO add Customer " + result);
+                    out.writeBoolean(result);
+                    out.flush(); 
+                }
+            }
+            while(!request.equalsIgnoreCase("terminate"));
+
+            // Step 3:close down
+            //out.close();
+            //in.close();
+            //client.close();        
+        }
+        catch (IOException | SQLException | ClassNotFoundException e) {
+            System.out.println("Server>> Exception thrown ---> " + e.getMessage());
+        }
+    }
+  
+    public static void main(String[] args) throws SQLException
+    {
+        // Create application
+        new server();
+
+    }
+}

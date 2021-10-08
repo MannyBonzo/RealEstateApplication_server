@@ -5,22 +5,23 @@
  */
 package za.ac.cput.realestateappserver.domain;
 
+import java.io.Serializable;
+
 /**
- *
- * @author smann
+ * customer worker class - server side 
+ * @author Manasseh Barnes - 218009615
  */
-public class customer {
-    private int custID, mobileNumber, IDnumber;
+
+public class customer implements Serializable{
+    private int mobileNumber,custID;
     private String Name, Surname, emailAddress;
     
-
-    public customer(int custID, int mobileNumber, int IDnumber, String Name, String Surname, String emailAddress) {
-        this.mobileNumber = mobileNumber;
-        this.IDnumber = IDnumber;
+    public customer(int custID, String Name, String Surname, int mobileNumber, String emailAddress) {
+        this.custID = custID;
         this.Name = Name;
         this.Surname = Surname;
+        this.mobileNumber = mobileNumber;
         this.emailAddress = emailAddress;
-        this.custID = custID;
     }
 
     public int getMobileNumber() {
@@ -31,12 +32,12 @@ public class customer {
         this.mobileNumber = mobileNumber;
     }
 
-    public int getIDnumber() {
-        return IDnumber;
+    public int getCustID() {
+        return custID;
     }
 
-    public void setIDnumber(int IDnumber) {
-        this.IDnumber = IDnumber;
+    public void setCustID(int custID) {
+        this.custID = custID;
     }
 
     public String getName() {
@@ -63,17 +64,4 @@ public class customer {
         this.emailAddress = emailAddress;
     }
 
-    public int getCustID() {
-        return custID;
-    }
-
-    public void setCustID(int custID) {
-        this.custID = custID;
-    }
-
-    @Override
-    public String toString() {
-        return "customer{" + "custID=" + custID + ", mobileNumber=" + mobileNumber + ", IDnumber=" + IDnumber + ", Name=" + Name + ", Surname=" + Surname + ", emailAddress=" + emailAddress + '}';
-    }
-    
 }

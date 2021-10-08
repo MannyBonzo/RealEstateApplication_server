@@ -14,12 +14,12 @@ public class agent {
     private String Name, Surname, emailAddress;
     private boolean isActive;
 
-    public agent(int employeeID, int IDnumber, int mobileNum, String Name, String Surname, String emailAddress,boolean isActive) {
+    public agent(int employeeID, int IDnumber, String Name, String Surname, int mobileNum, String emailAddress, boolean isActive) {
         this.employeeID = employeeID;
         this.IDnumber = IDnumber;
-        this.mobileNum = mobileNum;
         this.Name = Name;
         this.Surname = Surname;
+        this.mobileNum = mobileNum;
         this.emailAddress = emailAddress;
         this.isActive = isActive;
     }
@@ -71,7 +71,7 @@ public class agent {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
-    
+
     public boolean isIsActive() {
         return isActive;
     }
@@ -84,5 +84,5 @@ public class agent {
     public String toString() {
         return "agent{" + "employeeID=" + employeeID + ", IDnumber=" + IDnumber + ", mobileNum=" + mobileNum + ", Name=" + Name + ", Surname=" + Surname + ", emailAddress=" + emailAddress + ", isActive=" + isActive + '}';
     }
-    
+
 }
