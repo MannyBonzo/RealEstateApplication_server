@@ -93,10 +93,19 @@ public class server {
                     customer customer = (customer)in.readObject();
                         //System.out.println(customer);
                     customerDao = new CustomerDAO();
-                    boolean result = customerDao.addCustomer(customer);
-                        System.out.println("Result of DAO add Customer " + result);
-                    out.writeBoolean(result);
+                    boolean response = customerDao.addCustomer(customer);
+                        System.out.println("Result of DAO add Customer success>>" + response);
+                    out.writeBoolean(response);
                     out.flush(); 
+                }
+                else if(request.equalsIgnoreCase("addHouse")){
+                    System.out.println("Client requesting addHouse method");
+                    house house = (house)in.readObject();
+                    houseDao = new HouseDAO();
+                    boolean response = houseDao.addHouse(house);
+                        System.out.println("Result of DAO add House success>>" + response);
+                    out.writeObject(response);
+                    out.flush();
                 }
             }
             while(!request.equalsIgnoreCase("terminate"));

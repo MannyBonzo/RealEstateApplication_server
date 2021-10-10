@@ -1,1 +1,8 @@
-za\ac\cput\realestateappserver\server\Server.class
+za\ac\cput\realestateappserver\connection\DBconnection.class
+za\ac\cput\realestateapp\domain\house.class
+za\ac\cput\realestateappserver\dao\CustomerDAO.class
+za\ac\cput\realestateappserver\dao\AgentDAO.class
+za\ac\cput\realestateappserver\dao\HouseDAO.class
+za\ac\cput\realestateapp\domain\agent.class
+za\ac\cput\realestateapp\domain\customer.class
+za\ac\cput\realestateappserver\server\server.class

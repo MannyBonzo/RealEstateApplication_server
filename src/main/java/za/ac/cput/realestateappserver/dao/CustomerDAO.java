@@ -8,8 +8,6 @@ package za.ac.cput.realestateappserver.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import za.ac.cput.realestateappserver.connection.DBconnection;
 
 import za.ac.cput.realestateapp.domain.customer;

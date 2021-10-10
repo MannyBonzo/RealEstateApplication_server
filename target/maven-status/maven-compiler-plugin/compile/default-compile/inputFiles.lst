@@ -1,1 +1,8 @@
-C:\Users\smann\Desktop\RealEstateAppServer\src\main\java\za\ac\cput\realestateappserver\server\Server.java
+C:\Users\smann\Desktop\RealEstateAppServer\src\main\java\za\ac\cput\realestateapp\domain\house.java
+C:\Users\smann\Desktop\RealEstateAppServer\src\main\java\za\ac\cput\realestateapp\domain\agent.java
+C:\Users\smann\Desktop\RealEstateAppServer\src\main\java\za\ac\cput\realestateappserver\connection\DBconnection.java
+C:\Users\smann\Desktop\RealEstateAppServer\src\main\java\za\ac\cput\realestateapp\domain\customer.java
+C:\Users\smann\Desktop\RealEstateAppServer\src\main\java\za\ac\cput\realestateappserver\dao\HouseDAO.java
+C:\Users\smann\Desktop\RealEstateAppServer\src\main\java\za\ac\cput\realestateappserver\dao\CustomerDAO.java
+C:\Users\smann\Desktop\RealEstateAppServer\src\main\java\za\ac\cput\realestateappserver\server\server.java
+C:\Users\smann\Desktop\RealEstateAppServer\src\main\java\za\ac\cput\realestateappserver\dao\AgentDAO.java

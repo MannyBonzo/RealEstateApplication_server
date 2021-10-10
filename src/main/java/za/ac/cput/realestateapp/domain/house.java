@@ -5,24 +5,24 @@
  */
 package za.ac.cput.realestateapp.domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author smann
  */
-public class house {
-    private int houseID, houseNum, postalCode, numofRooms, rentalPrice;
-    private String streetName, city, area;
+public class house implements Serializable{
+    private int houseID, houseNum, numofRooms, rentalPrice;
+    private String streetName, area;
     private boolean isAvailable;
 
-    public house(int houseID, int houseNum, int postalCode, int numofRooms, int rentalPrice, String streetName, String city, String area, boolean isAvailable) {
+    public house(int houseID, int houseNum, String streetName, String area, int numofRooms, int rentalPrice, boolean isAvailable) {
         this.houseID = houseID;
         this.houseNum = houseNum;
-        this.postalCode = postalCode;
+        this.streetName = streetName;
+        this.area = area;
         this.numofRooms = numofRooms;
         this.rentalPrice = rentalPrice;
-        this.streetName = streetName;
-        this.city = city;
-        this.area = area;
         this.isAvailable = isAvailable;
     }
 
@@ -40,14 +40,6 @@ public class house {
 
     public void setHouseNum(int houseNum) {
         this.houseNum = houseNum;
-    }
-
-    public int getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
     }
 
     public int getNumofRooms() {
@@ -74,14 +66,6 @@ public class house {
         this.streetName = streetName;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getArea() {
         return area;
     }
@@ -100,7 +84,6 @@ public class house {
 
     @Override
     public String toString() {
-        return "house{" + "houseID=" + houseID + ", houseNum=" + houseNum + ", postalCode=" + postalCode + ", numofRooms=" + numofRooms + ", rentalPrice=" + rentalPrice + ", streetName=" + streetName + ", city=" + city + ", area=" + area + ", isAvailable=" + isAvailable + '}';
+        return "house{" + "houseID=" + houseID + ", houseNum=" + houseNum + ", numofRooms=" + numofRooms + ", rentalPrice=" + rentalPrice + ", streetName=" + streetName + ", area=" + area + ", isAvailable=" + isAvailable + '}';
     }
-    
 }
