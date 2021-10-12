@@ -8,9 +8,10 @@ package za.ac.cput.realestateapp.domain;
 import java.io.Serializable;
 
 /**
- *
- * @author smann
+ * house worker class - Server side 
+ * @author Manasseh Barnes - 218009615
  */
+
 public class house implements Serializable{
     private int houseID, houseNum, numofRooms, rentalPrice;
     private String streetName, area;

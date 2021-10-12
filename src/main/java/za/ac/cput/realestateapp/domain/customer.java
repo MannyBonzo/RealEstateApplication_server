@@ -8,7 +8,7 @@ package za.ac.cput.realestateapp.domain;
 import java.io.Serializable;
 
 /**
- * customer worker class - server side 
+ * customer worker class - Server side 
  * @author Manasseh Barnes - 218009615
  */
 

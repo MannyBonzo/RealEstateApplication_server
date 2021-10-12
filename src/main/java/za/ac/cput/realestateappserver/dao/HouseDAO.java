@@ -12,20 +12,21 @@ import za.ac.cput.realestateapp.domain.house;
 import za.ac.cput.realestateappserver.connection.DBconnection;
 
 /**
- *
- * @author smann
+ * HouseDAO functionality
+ * @author Manasseh Barnes - 218009615
  */
 public class HouseDAO {
     private final Connection con;
     
     private PreparedStatement ps;
     
+    private boolean added = false;
+    
     public HouseDAO() throws SQLException {
         this.con = DBconnection.derbyConnection();
     }
     
     public boolean addHouse(house house) {
-        boolean added = false;
             try{
                 String insertSQL = "INSERT INTO house (house_id, house_number, street_name, area, number_of_rooms, rent_price, is_Available) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -55,13 +56,14 @@ public class HouseDAO {
                     e.printStackTrace();
                 }
             }
-        return added = true;
+        return true;
     }
+    //DEBUGGING
     /*
     public static void main(String[] args) {  
         try {
             HouseDAO dao = new HouseDAO();
-            dao.addHouse(new house(6, 50, "Betty", "Blue Downs", 9, 1000, false));
+            dao.addHouse(new house(52, 50, "Betty", "Blue Downs", 9, 1000, true));
         } catch (SQLException e) {
            e.printStackTrace();
         }

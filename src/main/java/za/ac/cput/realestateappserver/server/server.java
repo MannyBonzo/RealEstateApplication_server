@@ -46,6 +46,11 @@ public class server {
         listen();
         createStreams();
         processClient();
+        
+        startServer();
+        listen();
+        createStreams();
+        processClient();
     }
     
     public void startServer() {
@@ -89,31 +94,44 @@ public class server {
             do {
                 request = (String)in.readObject();
                 if(request.equalsIgnoreCase("addCustomer")){
-                    System.out.println("Client requesting addCustomer method");
+                        System.out.println("Client requesting addCustomer method");
                     customer customer = (customer)in.readObject();
                         //System.out.println(customer);
                     customerDao = new CustomerDAO();
                     boolean response = customerDao.addCustomer(customer);
                         System.out.println("Result of DAO add Customer success>>" + response);
                     out.writeBoolean(response);
-                    out.flush(); 
+                        out.flush(); 
                 }
                 else if(request.equalsIgnoreCase("addHouse")){
-                    System.out.println("Client requesting addHouse method");
+                        System.out.println("Client requesting addHouse method");
                     house house = (house)in.readObject();
+                        System.out.println("Reading in new house information...");
                     houseDao = new HouseDAO();
+                        System.out.println("adding new house...");
                     boolean response = houseDao.addHouse(house);
                         System.out.println("Result of DAO add House success>>" + response);
                     out.writeObject(response);
-                    out.flush();
+                        out.flush();
+                }
+                else if(request.equalsIgnoreCase("addAgent")){
+                        System.out.println("Client requesting addAgent method");
+                    agent agent = (agent)in.readObject();
+                        System.out.println("Reading in new agent information...");
+                    agentDao = new AgentDAO();
+                        System.out.println("adding new agent...");
+                    boolean response = agentDao.addAgent(agent);
+                        System.out.println("Result of DAO add agent success>>" + response);
+                    out.writeObject(response);
+                        out.flush();
                 }
             }
             while(!request.equalsIgnoreCase("terminate"));
 
             // Step 3:close down
-            //out.close();
-            //in.close();
-            //client.close();        
+            out.close();
+            in.close();
+            client.close();        
         }
         catch (IOException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();

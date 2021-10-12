@@ -13,22 +13,23 @@ import za.ac.cput.realestateappserver.connection.DBconnection;
 import za.ac.cput.realestateapp.domain.customer;
 
 /**
- *
- * @author smann
+ * CustomerDAO functionality
+ * @author Manasseh Barnes - 218009615
  */
 public class CustomerDAO {
     private final Connection con;
     
     private PreparedStatement ps;
     
+    private boolean added = false;
+    
     public CustomerDAO() throws SQLException {
         this.con = DBconnection.derbyConnection();
     }
     
     public boolean addCustomer(customer customer) {
-        boolean added = false;
             try{
-                String insertSQL = "INSERT INTO customer (customer_id, name, surname, phone_number, email) "
+                String insertSQL = "INSERT INTO customer (customer_id, name, surname, mobile_number, email) "
                 + "VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement ps = this.con.prepareStatement(insertSQL);
                 ps.setInt(1,customer.getCustID());
@@ -54,15 +55,16 @@ public class CustomerDAO {
                     
                 }
             }
-        return added = true;
+        return true;
     }
+    //DEBUGGING
     /*
     public static void main(String[] args) {  
         try {
             CustomerDAO dao = new CustomerDAO();
             dao.addCustomer(new customer(456,"123","123",123,"123"));
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
     */

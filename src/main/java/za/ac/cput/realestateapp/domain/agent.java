@@ -5,18 +5,20 @@
  */
 package za.ac.cput.realestateapp.domain;
 
+import java.io.Serializable;
+
 /**
- *
- * @author smann
+ * agent worker class - Server side
+ * @author Manasseh Barnes - 218009615
  */
-public class agent {
-    private int employeeID, IDnumber, mobileNum;
+
+public class agent implements Serializable{
+    private int employeeID, mobileNum;
     private String Name, Surname, emailAddress;
     private boolean isActive;
 
-    public agent(int employeeID, int IDnumber, String Name, String Surname, int mobileNum, String emailAddress, boolean isActive) {
+    public agent(int employeeID, String Name, String Surname, int mobileNum, String emailAddress, boolean isActive) {
         this.employeeID = employeeID;
-        this.IDnumber = IDnumber;
         this.Name = Name;
         this.Surname = Surname;
         this.mobileNum = mobileNum;
@@ -30,14 +32,6 @@ public class agent {
 
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
-    }
-
-    public int getIDnumber() {
-        return IDnumber;
-    }
-
-    public void setIDnumber(int IDnumber) {
-        this.IDnumber = IDnumber;
     }
 
     public int getMobileNum() {
@@ -82,7 +76,6 @@ public class agent {
 
     @Override
     public String toString() {
-        return "agent{" + "employeeID=" + employeeID + ", IDnumber=" + IDnumber + ", mobileNum=" + mobileNum + ", Name=" + Name + ", Surname=" + Surname + ", emailAddress=" + emailAddress + ", isActive=" + isActive + '}';
+        return "agent{" + "employeeID=" + employeeID + ", mobileNum=" + mobileNum + ", Name=" + Name + ", Surname=" + Surname + ", emailAddress=" + emailAddress + ", isActive=" + isActive + '}';
     }
-
 }
