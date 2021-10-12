@@ -8,22 +8,23 @@ package za.ac.cput.realestateapp.domain;
 import java.io.Serializable;
 
 /**
- * house worker class - Server side 
+ * house worker class - Client side 
  * @author Manasseh Barnes - 218009615
  */
 
 public class house implements Serializable{
     private int houseID, houseNum, numofRooms, rentalPrice;
-    private String streetName, area;
+    private String streetName, area, type;
     private boolean isAvailable;
 
-    public house(int houseID, int houseNum, String streetName, String area, int numofRooms, int rentalPrice, boolean isAvailable) {
+    public house(int houseID, int houseNum, String streetName, String area, int numofRooms, int rentalPrice, String type, boolean isAvailable) {
         this.houseID = houseID;
         this.houseNum = houseNum;
         this.streetName = streetName;
         this.area = area;
         this.numofRooms = numofRooms;
         this.rentalPrice = rentalPrice;
+        this.type = type;
         this.isAvailable = isAvailable;
     }
 
@@ -75,6 +76,15 @@ public class house implements Serializable{
         this.area = area;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+
     public boolean isIsAvailable() {
         return isAvailable;
     }
@@ -85,6 +95,6 @@ public class house implements Serializable{
 
     @Override
     public String toString() {
-        return "house{" + "houseID=" + houseID + ", houseNum=" + houseNum + ", numofRooms=" + numofRooms + ", rentalPrice=" + rentalPrice + ", streetName=" + streetName + ", area=" + area + ", isAvailable=" + isAvailable + '}';
+        return "house{" + "houseID=" + houseID + ", houseNum=" + houseNum + ", numofRooms=" + numofRooms + ", rentalPrice=" + rentalPrice + ", streetName=" + streetName + ", area=" + area + ", type=" + type + ", isAvailable=" + isAvailable + '}';
     }
 }

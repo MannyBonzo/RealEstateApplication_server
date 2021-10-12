@@ -94,42 +94,44 @@ public class server {
             do {
                 request = (String)in.readObject();
                 if(request.equalsIgnoreCase("addCustomer")){
-                        System.out.println("Client requesting addCustomer method");
+                        System.out.println("\nClient requesting addCustomer method");
                     customer customer = (customer)in.readObject();
                         //System.out.println(customer);
                     customerDao = new CustomerDAO();
                     boolean response = customerDao.addCustomer(customer);
-                        System.out.println("Result of DAO add Customer success>>" + response);
+                        System.out.println("Result of DAO add Customer success>>" + response + "\n");
                     out.writeBoolean(response);
                         out.flush(); 
                 }
                 else if(request.equalsIgnoreCase("addHouse")){
-                        System.out.println("Client requesting addHouse method");
+                        System.out.println("\nClient requesting addHouse method");
                     house house = (house)in.readObject();
                         System.out.println("Reading in new house information...");
                     houseDao = new HouseDAO();
                         System.out.println("adding new house...");
                     boolean response = houseDao.addHouse(house);
-                        System.out.println("Result of DAO add House success>>" + response);
+                        System.out.println("Result of DAO add House success>>" + response + "\n");
                     out.writeObject(response);
                         out.flush();
                 }
                 else if(request.equalsIgnoreCase("addAgent")){
-                        System.out.println("Client requesting addAgent method");
+                        System.out.println("\nClient requesting addAgent method");
                     agent agent = (agent)in.readObject();
                         System.out.println("Reading in new agent information...");
                     agentDao = new AgentDAO();
                         System.out.println("adding new agent...");
                     boolean response = agentDao.addAgent(agent);
-                        System.out.println("Result of DAO add agent success>>" + response);
+                        System.out.println("Result of DAO add agent success>>" + response + "\n");
                     out.writeObject(response);
                         out.flush();
                 }
-                else if(request.equalsIgnoreCase("getAllLocationCBO")) {
-                        System.out.println("Client requesting all location data for combobox");
+                else if(request.equalsIgnoreCase("getAll_id")) {
+                        System.out.println("Client requesting all houseID data for combobox");
+                    String type = (String)in.readObject();
+                        System.out.println("Reading Type of rental...");
                     houseDao = new HouseDAO();
-                        System.out.println("populating combobox...");
-                    List response = houseDao.getAllLocations();
+                        //System.out.println("populating combobox...");
+                    List response = houseDao.getAllType_Available(type);
                     
                         if(response !=null) {
                             System.out.println("SERVER>> " + response);
@@ -137,6 +139,24 @@ public class server {
                         }
                         else{
                             System.out.println("Sorry, could not populate combobox");
+                        }
+                    out.writeObject(response);
+                        out.flush();  
+                }
+                else if(request.equalsIgnoreCase("getAll_houseInfo")) {
+                        System.out.println("Client requesting all house data for TextField viewing...");
+                    String type = (String)in.readObject();
+                        System.out.println("Reading house_ID...");
+                    houseDao = new HouseDAO();
+                        //System.out.println("populating combobox...");
+                    List response = houseDao.getAllHouseINFO(type);
+                    
+                        if(response !=null) {
+                            System.out.println("SERVER>> " + response);
+                            System.out.println("population successful");
+                        }
+                        else{
+                            System.out.println("Sorry, could not populate TextFields");
                         }
                     out.writeObject(response);
                         out.flush();  
