@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.List;
 
 import za.ac.cput.realestateapp.domain.customer;
 import za.ac.cput.realestateapp.domain.agent;
@@ -88,8 +89,7 @@ public class server {
         }
     }
     
-    public void processClient()
-    {
+    public void processClient() {
         try {
             do {
                 request = (String)in.readObject();
@@ -124,6 +124,22 @@ public class server {
                         System.out.println("Result of DAO add agent success>>" + response);
                     out.writeObject(response);
                         out.flush();
+                }
+                else if(request.equalsIgnoreCase("getAllLocationCBO")) {
+                        System.out.println("Client requesting all location data for combobox");
+                    houseDao = new HouseDAO();
+                        System.out.println("populating combobox...");
+                    List response = houseDao.getAllLocations();
+                    
+                        if(response !=null) {
+                            System.out.println("SERVER>> " + response);
+                            System.out.println("population successful");
+                        }
+                        else{
+                            System.out.println("Sorry, could not populate combobox");
+                        }
+                    out.writeObject(response);
+                        out.flush();  
                 }
             }
             while(!request.equalsIgnoreCase("terminate"));

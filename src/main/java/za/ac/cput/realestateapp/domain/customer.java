@@ -16,9 +16,6 @@ public class customer implements Serializable{
     private int mobileNumber,custID;
     private String Name, Surname, emailAddress;
     
-    public customer() {
-    }
-    
     public customer(int custID, String Name, String Surname, int mobileNumber, String emailAddress) {
         this.custID = custID;
         this.Name = Name;

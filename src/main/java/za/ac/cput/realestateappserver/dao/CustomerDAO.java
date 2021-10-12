@@ -7,9 +7,12 @@ package za.ac.cput.realestateappserver.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import za.ac.cput.realestateappserver.connection.DBconnection;
+import java.util.ArrayList;
+import java.util.List;
 
+import za.ac.cput.realestateappserver.connection.DBconnection;
 import za.ac.cput.realestateapp.domain.customer;
 
 /**
@@ -57,6 +60,45 @@ public class CustomerDAO {
             }
         return true;
     }
+    
+    public List<customer> getAllDetails() throws SQLException { 
+        List<customer> customers = new ArrayList<>();
+            
+        String getAll_SQL = "SELECT * FROM customer";
+
+        PreparedStatement ps = this.con.prepareStatement(getAll_SQL);
+        ResultSet rs = ps.executeQuery();
+        try {
+            while (rs.next()) {
+                int customer_id = rs.getInt("customer_id");
+                String name = rs.getString("name");
+                String surname = rs.getString("surname");
+                int mobile_num = rs.getInt("mobile_number");
+                String email = rs.getString("email");
+                
+                customer customer = new customer(customer_id, name, surname, mobile_num, email);
+                customers.add(customer);
+            }
+            
+        }
+        catch(SQLException sqle) {
+                System.out.println();
+        }
+        finally {
+            try{
+                if(ps != null){
+                    ps.close();
+                    con.close();
+                }
+            }
+            catch(Exception exception) {
+                    
+            }
+        }
+        System.out.println(customers); //Debug
+        return customers;
+    }
+    
     //DEBUGGING
     /*
     public static void main(String[] args) {  
