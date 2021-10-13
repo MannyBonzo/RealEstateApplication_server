@@ -5,13 +5,14 @@
  */
 package za.ac.cput.realestateapp.domain;
 
+import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Transaction worker class - server side
  * @author Manasseh Barnes
  */
-public class rentTransaction {
+public class rentTransaction implements Serializable {
     private int transaction_id, customer_id, house_id, rent_price, commission;
     
     private static final AtomicInteger count = new AtomicInteger(0);

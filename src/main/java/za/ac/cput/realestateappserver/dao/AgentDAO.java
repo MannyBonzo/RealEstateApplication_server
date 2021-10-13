@@ -7,7 +7,10 @@ package za.ac.cput.realestateappserver.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import za.ac.cput.realestateappserver.connection.DBconnection;
 
 import za.ac.cput.realestateapp.domain.agent;
@@ -59,16 +62,37 @@ public class AgentDAO {
             }
         return true;
     }
-    
+    public List<String> getAll_agentID() throws SQLException {
+        List<String> agentID = new ArrayList<>();
+            
+        String getAll_agentid= "SELECT employee_id FROM agent";
+ 
+        //House chosen
+        
+          PreparedStatement ps = this.con.prepareStatement(getAll_agentid);
+          ResultSet rs = ps.executeQuery();
+          try{
+            while(rs.next()) {
+                int agent_id = rs.getInt("employee_id");
+                
+                agentID.add(String.valueOf(agent_id));
+            }
+          }    
+          catch(SQLException sqle) {
+                System.out.println();
+          }
+        System.out.println(agentID); //Debug
+        return agentID;
+    }
     //DEBUGGING
-    /*
+    
     public static void main(String[] args) {  
         try {
             AgentDAO dao = new AgentDAO();
-            dao.addAgent(new agent(1, "manny", "barnes", 456231, "manny@gmail.com", true));
+            dao.getAll_agentID();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-    */
+    
 }

@@ -185,16 +185,39 @@ public class HouseDAO {
         System.out.println(houseInfo); //Debug
         return houseInfo; 
     }
-    //DEBUGGING
     
+    public List<String> getAll_houseID() throws SQLException {
+        List<String> houseID = new ArrayList<>();
+            
+        String getAll_houseid = "SELECT house_id FROM house";
+ 
+        //House chosen
+        
+          PreparedStatement ps = this.con.prepareStatement(getAll_houseid);
+          ResultSet rs = ps.executeQuery();
+          try{
+            while(rs.next()) {
+                int house_id = rs.getInt("house_id");
+                
+                houseID.add(String.valueOf(house_id));
+            }
+          }    
+          catch(SQLException sqle) {
+                System.out.println();
+          }
+        System.out.println(houseID); //Debug
+        return houseID;
+    }
+    //DEBUGGING
+    /*
     public static void main(String[] args) {  
         try {
             HouseDAO dao = new HouseDAO();
             //dao.getAllLocations();
-            dao.getAllHouseINFO("2");
+            dao.getAll_houseID();
         } catch (SQLException e) {
            e.printStackTrace();
         }
     }
-    
+    */
 }

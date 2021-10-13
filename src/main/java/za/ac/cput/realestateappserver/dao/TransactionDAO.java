@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import za.ac.cput.realestateappserver.connection.DBconnection;
 
 import za.ac.cput.realestateapp.domain.rentTransaction;
+import za.ac.cput.realestateapp.domain.house;
 
 /**
  * TransactionDAO functionality
@@ -58,6 +59,12 @@ public class TransactionDAO {
                 }
             }
         return true;
+    }
+    /*
+    public boolean updateHouseAvailablity(String update) {
+        try{
+            String updateSQL = "UPDATE house SET house.is_available = "+update+" WHERE house_id ";
+        }
     }
     //DEBUGGING
     /*

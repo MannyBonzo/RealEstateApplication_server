@@ -174,6 +174,40 @@ public class server {
                     out.writeObject(response);
                         out.flush();
                 }
+                else if(request.equalsIgnoreCase("getHouseID")){
+                    System.out.println("Client requesting all houseID data for Editing combobox");
+                    
+                    houseDao = new HouseDAO();
+                        //System.out.println("populating combobox...");    
+                    List response = houseDao.getAll_houseID();
+                        System.out.println("LIST >> " + response);
+                        if(response !=null) {
+                            System.out.println("SERVER>> " + response);
+                            System.out.println("population successful");
+                        }
+                        else{
+                            System.out.println("Sorry, could not populate combobox");
+                        }
+                    out.writeObject(response);
+                        out.flush();
+                }
+                else if(request.equalsIgnoreCase("getAgentID")){
+                    System.out.println("Client requesting all agentID data for Editing combobox");
+                    
+                    agentDao = new AgentDAO();
+                        //System.out.println("populating combobox...");    
+                    List response = agentDao.getAll_agentID();
+                        System.out.println("LIST >> " + response);
+                        if(response !=null) {
+                            System.out.println("SERVER>> " + response);
+                            System.out.println("population successful");
+                        }
+                        else{
+                            System.out.println("Sorry, could not populate combobox");
+                        }
+                    out.writeObject(response);
+                        out.flush();
+                }
             }
             while(!request.equalsIgnoreCase("terminate"));
 
