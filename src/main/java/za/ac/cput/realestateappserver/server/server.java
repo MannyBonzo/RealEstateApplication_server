@@ -16,10 +16,12 @@ import java.util.List;
 import za.ac.cput.realestateapp.domain.customer;
 import za.ac.cput.realestateapp.domain.agent;
 import za.ac.cput.realestateapp.domain.house;
+import za.ac.cput.realestateapp.domain.rentTransaction;
 
 import za.ac.cput.realestateappserver.dao.CustomerDAO;
 import za.ac.cput.realestateappserver.dao.AgentDAO;
 import za.ac.cput.realestateappserver.dao.HouseDAO;
+import za.ac.cput.realestateappserver.dao.TransactionDAO;
 
 /**
  *
@@ -145,11 +147,11 @@ public class server {
                 }
                 else if(request.equalsIgnoreCase("getAll_houseInfo")) {
                         System.out.println("Client requesting all house data for TextField viewing...");
-                    String type = (String)in.readObject();
+                    String available = (String)in.readObject();
                         System.out.println("Reading house_ID...");
                     houseDao = new HouseDAO();
                         //System.out.println("populating combobox...");
-                    List response = houseDao.getAllHouseINFO(type);
+                    List response = houseDao.getAllHouseINFO(available);
                     
                         if(response !=null) {
                             System.out.println("SERVER>> " + response);
@@ -160,6 +162,17 @@ public class server {
                         }
                     out.writeObject(response);
                         out.flush();  
+                }
+                else if(request.equalsIgnoreCase("recordTransaction")){
+                        System.out.println("\nClient requesting recordTransaction method");
+                    rentTransaction transaction = (rentTransaction)in.readObject();
+                        System.out.println("Reading in new transaction information...");
+                    TransactionDAO transactionDao = new TransactionDAO();
+                        System.out.println("adding new transaction...");
+                    boolean response = transactionDao.recordTransaction(transaction);
+                        System.out.println("Result of DAO add transaction success>>" + response + "\n");
+                    out.writeObject(response);
+                        out.flush();
                 }
             }
             while(!request.equalsIgnoreCase("terminate"));

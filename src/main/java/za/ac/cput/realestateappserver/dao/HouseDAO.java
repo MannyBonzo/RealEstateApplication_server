@@ -68,10 +68,10 @@ public class HouseDAO {
     public List<String> getAllType_Available(String type) throws SQLException {
         List<String> houseID = new ArrayList<>();
             
-        String getAll_type1 = "SELECT house_id FROM house WHERE type = 'Free Standing House'";
-        String getAll_type2 = "SELECT house_id FROM house WHERE type = 'Condo'";
-        String getAll_type3 = "SELECT house_id FROM house WHERE type = 'Flat'";
-        String getAll_type4 = "SELECT house_id FROM house WHERE type = 'Mansion'";
+        String getAll_type1 = "SELECT house_id FROM house WHERE type = 'Free Standing House' AND is_available = true";
+        String getAll_type2 = "SELECT house_id FROM house WHERE type = 'Condo' AND is_available = true";
+        String getAll_type3 = "SELECT house_id FROM house WHERE type = 'Flat' AND is_available = true";
+        String getAll_type4 = "SELECT house_id FROM house WHERE type = 'Mansion' AND is_available = true";
         
         String type1 = "Free Standing House";
         String type2 = "Condo";
@@ -154,11 +154,11 @@ public class HouseDAO {
         return houseID;
     }
     
-    public List<String> getAllHouseINFO(String type) throws SQLException {
+    public List<String> getAllHouseINFO(String available) throws SQLException {
         house house = null;
         List<String> houseInfo = new ArrayList<>();
         
-        String insertSQL = "SELECT house_number, street_name, number_of_rooms, rent_price FROM house";
+        String insertSQL = "SELECT house_number, street_name, number_of_rooms, rent_price FROM house WHERE house_id = "+available+"";
         
         PreparedStatement ps = this.con.prepareStatement(insertSQL);
         ResultSet rs = ps.executeQuery();
@@ -186,15 +186,15 @@ public class HouseDAO {
         return houseInfo; 
     }
     //DEBUGGING
-    /*
+    
     public static void main(String[] args) {  
         try {
             HouseDAO dao = new HouseDAO();
             //dao.getAllLocations();
-            dao.getAllHouseINFO("1");
+            dao.getAllHouseINFO("2");
         } catch (SQLException e) {
            e.printStackTrace();
         }
     }
-    */
+    
 }
