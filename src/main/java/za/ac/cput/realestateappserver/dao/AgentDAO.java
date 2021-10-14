@@ -84,15 +84,49 @@ public class AgentDAO {
         System.out.println(agentID); //Debug
         return agentID;
     }
-    //DEBUGGING
     
+    public List<String> getAllEDITAgentINFO(String agent_id) throws SQLException {
+        agent agent = null;
+        List<String> EDITagentInfo = new ArrayList<>();
+        
+        String insertSQL = "SELECT name, surname, mobile_number, email, is_active FROM agent WHERE employee_id = "+agent_id+"";
+        
+        PreparedStatement ps = this.con.prepareStatement(insertSQL);
+        ResultSet rs = ps.executeQuery();
+            try{
+                while(rs.next()) {
+                    String name = rs.getString("name");
+                    String surname = rs.getString("surname");
+                    String mobile_number = rs.getString("mobile_number");
+                    String email = rs.getString("email");
+                    String is_active = rs.getString("is_active");
+                    
+                    EDITagentInfo.add(String.valueOf(name));
+                    EDITagentInfo.add(surname);
+                    EDITagentInfo.add(mobile_number);
+                    EDITagentInfo.add(String.valueOf(email));
+                    EDITagentInfo.add(String.valueOf(is_active));
+                    
+                    System.out.println("dao fetching agent info, executing...");
+               
+                    System.out.println("dao fetching agent info, completed...");
+                }
+            }
+            catch(SQLException sqle) {
+                 System.out.println();
+            }
+        System.out.println(EDITagentInfo); //Debug
+        return EDITagentInfo; 
+    }
+    //DEBUGGING
+    /*
     public static void main(String[] args) {  
         try {
             AgentDAO dao = new AgentDAO();
-            dao.getAll_agentID();
+            dao.getAllEDITAgentINFO("2");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-    
+    */
 }

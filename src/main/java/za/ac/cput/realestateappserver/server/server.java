@@ -183,7 +183,7 @@ public class server {
                         System.out.println("LIST >> " + response);
                         if(response !=null) {
                             System.out.println("SERVER>> " + response);
-                            System.out.println("population successful");
+                            System.out.println("population successful\n");
                         }
                         else{
                             System.out.println("Sorry, could not populate combobox");
@@ -200,13 +200,50 @@ public class server {
                         System.out.println("LIST >> " + response);
                         if(response !=null) {
                             System.out.println("SERVER>> " + response);
-                            System.out.println("population successful");
+                            System.out.println("population successful\n");
                         }
                         else{
                             System.out.println("Sorry, could not populate combobox");
                         }
                     out.writeObject(response);
                         out.flush();
+                }
+                else if(request.equalsIgnoreCase("getAll_EDIThouseInfo")) {
+                        System.out.println("\nClient requesting all house data for TextField viewing...");
+                    String rental = (String)in.readObject();
+                        System.out.println("Reading house_ID...");
+                    houseDao = new HouseDAO();
+                        //System.out.println("populating combobox...");
+                    List response = houseDao.getAllEDITHouseINFO(rental);
+                    
+                        if(response !=null) {
+                            System.out.println("SERVER>> " + response);
+                            System.out.println("population successful\n");
+                        }
+                        else{
+                            System.out.println("Sorry, could not populate TextFields");
+                        }
+                    out.writeObject(response);
+                        out.flush();  
+                }
+                //GET AGENT DETAILS FROM AGENT ID CBO
+                else if(request.equalsIgnoreCase("getAll_EDITagentInfo")) {
+                        System.out.println("\nClient requesting all agent data for TextField viewing...");
+                    String agent_id = (String)in.readObject();
+                        System.out.println("Reading Agent_ID...");
+                    agentDao = new AgentDAO();
+                        //System.out.println("populating combobox...");
+                    List response = agentDao.getAllEDITAgentINFO(agent_id);
+                    
+                        if(response !=null) {
+                            System.out.println("SERVER>> " + response);
+                            System.out.println("population successful\n");
+                        }
+                        else{
+                            System.out.println("Sorry, could not populate TextFields");
+                        }
+                    out.writeObject(response);
+                        out.flush();  
                 }
             }
             while(!request.equalsIgnoreCase("terminate"));

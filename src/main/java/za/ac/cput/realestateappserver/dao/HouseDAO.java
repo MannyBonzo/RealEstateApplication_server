@@ -208,13 +208,49 @@ public class HouseDAO {
         System.out.println(houseID); //Debug
         return houseID;
     }
+    
+    public List<String> getAllEDITHouseINFO(String rental) throws SQLException {
+        house house = null;
+        List<String> EDIThouseInfo = new ArrayList<>();
+        
+        String insertSQL = "SELECT house_number, street_name, area, number_of_rooms, rent_price, is_available FROM house WHERE house_id = "+rental+"";
+        
+        PreparedStatement ps = this.con.prepareStatement(insertSQL);
+        ResultSet rs = ps.executeQuery();
+            try{
+                while(rs.next()) {
+                    int house_num = rs.getInt("house_number");
+                    String street_name = rs.getString("street_name");
+                    String area = rs.getString("area");
+                    int num_rooms = rs.getInt("number_of_rooms");
+                    int rent_price = rs.getInt("rent_price");
+                    String is_available = rs.getString("is_available");
+
+                    EDIThouseInfo.add(String.valueOf(house_num));
+                    EDIThouseInfo.add(street_name);
+                    EDIThouseInfo.add(area);
+                    EDIThouseInfo.add(String.valueOf(num_rooms));
+                    EDIThouseInfo.add(String.valueOf(rent_price));
+                    EDIThouseInfo.add(is_available);
+                    
+                    System.out.println("dao fetching house info, executing...");
+               
+                    System.out.println("dao fetching house info, completed...");
+                }
+            }
+            catch(SQLException sqle) {
+                 System.out.println();
+            }
+        System.out.println(EDIThouseInfo); //Debug
+        return EDIThouseInfo; 
+    }
     //DEBUGGING
     /*
     public static void main(String[] args) {  
         try {
             HouseDAO dao = new HouseDAO();
             //dao.getAllLocations();
-            dao.getAll_houseID();
+            dao.getAllEDITHouseINFO("7");
         } catch (SQLException e) {
            e.printStackTrace();
         }
