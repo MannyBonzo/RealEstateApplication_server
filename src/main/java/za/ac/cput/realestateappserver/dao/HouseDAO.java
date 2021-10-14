@@ -244,13 +244,49 @@ public class HouseDAO {
         System.out.println(EDIThouseInfo); //Debug
         return EDIThouseInfo; 
     }
+    
+    public boolean updateHouse(house house) {
+        try{
+                String insertSQL = "UPDATE house SET house_number = ?, street_name = ?, area = ?, number_of_rooms = ?, rent_price = ?, is_Available = ? WHERE house_id = ?";
+                PreparedStatement ps = this.con.prepareStatement(insertSQL);
+                
+                ps.setInt(1,house.getHouseNum());
+                ps.setString(2,house.getStreetName());
+                ps.setString(3,house.getArea());
+                ps.setInt(4,house.getNumofRooms());
+                ps.setInt(5,house.getRentalPrice());
+                ps.setBoolean(6,house.isIsAvailable());
+                
+                ps.setInt(7, house.getHouseID());
+                
+                    System.out.println("dao update existing house," + house.getHouseID() + " executing...");
+                ps.executeUpdate();
+                    System.out.println("dao update existing house," + house.getHouseID() + " completed...");
+            }
+            catch(SQLException sqle) {
+                sqle.printStackTrace();
+            }
+            finally {
+                try{
+                    if(ps != null){
+                        ps.close();
+                        con.close();
+                    }
+                }
+                catch(SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        return true;
+    }
+    
     //DEBUGGING
     /*
     public static void main(String[] args) {  
         try {
             HouseDAO dao = new HouseDAO();
             //dao.getAllLocations();
-            dao.getAllEDITHouseINFO("7");
+            dao.updateHouse(new house(1, 48, "Tortelduif Crescent", "Atlantis", 6, 5000, "", true));
         } catch (SQLException e) {
            e.printStackTrace();
         }

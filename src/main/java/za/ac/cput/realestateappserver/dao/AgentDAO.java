@@ -118,15 +118,50 @@ public class AgentDAO {
         System.out.println(EDITagentInfo); //Debug
         return EDITagentInfo; 
     }
+    
+    public boolean updateAgent(agent agent) {
+        try{
+                String insertSQL = "UPDATE agent SET name = ?, surname = ?, mobile_number = ?, email = ?, is_active = ? WHERE employee_id = ?";
+                PreparedStatement ps = this.con.prepareStatement(insertSQL);
+                
+                ps.setString(1,agent.getName());
+                ps.setString(2,agent.getSurname());
+                ps.setInt(3,agent.getMobileNum());
+                ps.setString(4,agent.getEmailAddress());
+                ps.setBoolean(5, agent.isIsActive());
+                
+                ps.setInt(6,agent.getEmployeeID());
+
+                    System.out.println("\ndao update existing agent," + agent.getEmployeeID() + " executing...");
+                ps.executeUpdate();
+                    System.out.println("dao update existing agent," + agent.getEmployeeID() + " completed...\n");
+            }
+            catch(SQLException sqle) {
+                sqle.printStackTrace();
+            }
+            finally {
+                try{
+                    if(ps != null){
+                        ps.close();
+                        con.close();
+                    }
+                }
+                catch(SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        return true;
+    }
+    
     //DEBUGGING
-    /*
+    
     public static void main(String[] args) {  
         try {
             AgentDAO dao = new AgentDAO();
-            dao.getAllEDITAgentINFO("2");
+            dao.updateAgent(new agent(1,"Manny", "Barnes", 456123789, "bonzo@gmail.com", false));
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-    */
+    
 }

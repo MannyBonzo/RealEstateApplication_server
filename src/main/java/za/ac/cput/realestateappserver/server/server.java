@@ -245,6 +245,28 @@ public class server {
                     out.writeObject(response);
                         out.flush();  
                 }
+                else if(request.equalsIgnoreCase("updateHouse")){
+                        System.out.println("\nClient requesting updateHouse method");
+                    house house = (house)in.readObject();
+                        System.out.println("Reading in house information...");
+                    houseDao = new HouseDAO();
+                        System.out.println("Updating in house information...");
+                    boolean response = houseDao.updateHouse(house);
+                        System.out.println("Result of DAO update house success>> " + response + "\n");
+                    out.writeObject(response);
+                        out.flush();
+                }
+                else if(request.equalsIgnoreCase("updateAgent")){
+                        System.out.println("\nClient requesting updateAgent method");
+                    agent agent = (agent)in.readObject();
+                        System.out.println("Reading in agent information...");
+                    houseDao = new HouseDAO();
+                        System.out.println("Updating in agent information...");
+                    boolean response = agentDao.updateAgent(agent);
+                        System.out.println("Result of DAO update agent success>> " + response + "\n");
+                    out.writeObject(response);
+                        out.flush();
+                }        
             }
             while(!request.equalsIgnoreCase("terminate"));
 
