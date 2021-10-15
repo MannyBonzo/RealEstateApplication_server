@@ -266,7 +266,24 @@ public class server {
                         System.out.println("Result of DAO update agent success>> " + response + "\n");
                     out.writeObject(response);
                         out.flush();
-                }        
+                }
+                //getAll_transData
+                else if(request.equalsIgnoreCase("getAll_transData")) {
+                        System.out.println("\nClient requesting all getAll_transData for Table viewing...");
+                    TransactionDAO transactionDao = new TransactionDAO();
+                        //System.out.println("populating combobox...");
+                    List response = transactionDao.getAll_transData();
+                    
+                        if(response !=null) {
+                            System.out.println("SERVER>> " + response);
+                            System.out.println("population successful\n");
+                        }
+                        else{
+                            System.out.println("Sorry, could not populate table");
+                        }
+                    out.writeObject(response);
+                        out.flush();  
+                }
             }
             while(!request.equalsIgnoreCase("terminate"));
 

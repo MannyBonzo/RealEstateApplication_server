@@ -14,18 +14,22 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class rentTransaction implements Serializable {
     private int transaction_id, customer_id, house_id, rent_price, commission;
+    private String customer_surname;
+    private boolean is_available;
     
     private static final AtomicInteger count = new AtomicInteger(0);
     private int counter = 0;
-    
-    public rentTransaction(int transaction_id, int customer_id, int house_id, int rent_price, int commission) {
+
+    public rentTransaction(int transaction_id, int customer_id, String customer_surname, int house_id, int rent_price, int commission,  boolean is_available) {
         this.transaction_id = transaction_id;
         this.customer_id = customer_id;
         this.house_id = house_id;
         this.rent_price = rent_price;
         this.commission = commission;
+        this.customer_surname = customer_surname;
+        this.is_available = is_available;
     }
-    
+
     public int id_increment(){
         counter = count.incrementAndGet();
         return counter;
@@ -36,6 +40,23 @@ public class rentTransaction implements Serializable {
         int Calculation = rent / 10;
         return Calculation;
     }
+
+    public String getCustomer_surname() {
+        return customer_surname;
+    }
+
+    public void setCustomer_surname(String customer_surname) {
+        this.customer_surname = customer_surname;
+    }
+
+    public boolean isIs_available() {
+        return is_available;
+    }
+
+    public void setIs_available(boolean is_available) {
+        this.is_available = is_available;
+    }
+    
     
     public int getTransaction_id() {
         return transaction_id;
@@ -79,6 +100,6 @@ public class rentTransaction implements Serializable {
 
     @Override
     public String toString() {
-        return "rentTransaction{" + "transaction_id=" + transaction_id + ", customer_id=" + customer_id + ", house_id=" + house_id + ", rent_price=" + rent_price + ", commission=" + commission + '}';
+        return "rentTransaction{" + "transaction_id=" + transaction_id + ", customer_id=" + customer_id + ", house_id=" + house_id + ", rent_price=" + rent_price + ", commission=" + commission + ", customer_surname=" + customer_surname + ", is_availble=" + is_available + ", counter=" + counter + '}';
     }
 }

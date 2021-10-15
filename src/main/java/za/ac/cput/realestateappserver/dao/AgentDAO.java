@@ -154,14 +154,14 @@ public class AgentDAO {
     }
     
     //DEBUGGING
-    
+    /*
     public static void main(String[] args) {  
         try {
             AgentDAO dao = new AgentDAO();
-            dao.updateAgent(new agent(1,"Manny", "Barnes", 456123789, "bonzo@gmail.com", false));
+            dao.updateAgent(new agent(1,"Manny", "Barnes", 456123789, "bonzo@gmail.com", true));
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-    
+    */
 }

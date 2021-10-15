@@ -239,7 +239,7 @@ public class HouseDAO {
                 }
             }
             catch(SQLException sqle) {
-                 System.out.println();
+                 System.out.println(sqle);
             }
         System.out.println(EDIThouseInfo); //Debug
         return EDIThouseInfo; 
