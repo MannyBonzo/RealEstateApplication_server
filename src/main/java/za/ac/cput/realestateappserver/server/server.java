@@ -62,7 +62,7 @@ public class server {
             listener = new ServerSocket(4000, 10);
         }
         catch (IOException ioe) {
-          System.out.println("IO Exception: " + ioe.getMessage());
+          System.out.println("IO Exception: ");
         }
     }
     
@@ -76,7 +76,7 @@ public class server {
           
         }
         catch(IOException ioe) {
-            System.out.println("IO Exception: " + ioe.getMessage());
+            System.out.println("IO Exception: ");
         }
     }
     
@@ -87,7 +87,7 @@ public class server {
             in = new ObjectInputStream(client.getInputStream());
         }
         catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
+            System.out.println("IO Exception: ");
         }
     }
     
@@ -293,7 +293,7 @@ public class server {
             client.close();        
         }
         catch (IOException | SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Exception: ");;
         }
     }
   
